@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;500;700&display=swap");
 
 :root{
     --dark-grayish-blue: hsl(217, 19%, 35%);
@@ -24,7 +24,7 @@ main{
 
 .article-preview{
     background-color: #fff;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
 }
 
@@ -67,6 +67,59 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    -webkit-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+    .article-preview-share:hover{
+        background: var(--dark-grayish-blue);
+    }
+    .article-preview-share:focus{
+        background: var(--dark-grayish-blue);
+    }
+    .article-preview-share path{
+        -webkit-transition: fill 0.5s;
+        transition: fill 0.5s;
+    }
+    .article-preview-share:hover path{
+        fill: white;
+    }
+    .article-preview-share:focus path{
+        fill: white;
+    }
+
+#tooltip{
+    position: fixed;
+    width: 13em;
+    padding: 1em 2em;
+    background-color: var(--dark-grayish-blue);
+    border-radius: 10px;
+    color: white;
+    font-weight: lighter;
+    display: none;
+}
+    #tooltip::after{
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        border-width: 10px;
+        border-style: solid;
+        border-color: var(--dark-grayish-blue) transparent transparent transparent;
+    }
+#tooltip.visible{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+}
+#tooltip.hide{
+    animation: fadeOut 1s;
+    -webkit-animation: fadeOut 1s;
+}
+#tooltip span{
+    margin-right: 0.6em;
+    letter-spacing: 5px;
 }
 
 /* Mobile */
@@ -75,9 +128,12 @@ main{
         flex-direction: column;
     } 
 
+    .article-preview-image{
+        border-radius: 8px 8px 0 0;
+    }
+
     .article-preview-content{
         padding: 1em 2.8em
-        1em 2.8em;
     } 
 
     .article-preview-author-name-date img{
@@ -102,23 +158,25 @@ main{
     }
 
     main{
-        margin-top: 10vh;
         display: flex;
         justify-content: center;
         align-content: center;
     }
 
     .article-preview{
-        width: 65%;
+        max-width: 65%;
+        margin-top: 8vh;
         flex-direction: row;
         justify-content: center;
         align-content: center;
+        border-radius: .5em;
     }
 
     .article-preview-image{
         max-width: 40%;
         object-fit: cover;
         object-position: left;
+        border-radius: .5em 0 0 .5em;
     }
 
     .article-preview-content{
@@ -132,4 +190,15 @@ main{
     .article-preview-author-name-date img{
         width: 3.5em;
     }
+
+    .article-preview-share{
+        width: 2.6em;
+        height: 2.6em;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
 }
